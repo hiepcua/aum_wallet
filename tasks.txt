@@ -1,0 +1,48 @@
+Wallet: (tbl_wallet)
+- id
+- user_id
+- free (tiền khả dụng)
+- locked (Tiền đang locked) 
+=> total_binance(số dư)
+- cdate (ngày tạo ví)
+- mdate (ngày thay đổi)
+- active (khóa ví hay không)
+
+Wallet_histories (logs) - khi xem lịch sử
+- id
+- id_wallet
+- user_id
+- monney
+- contents
+- cdate
+- status (1 giao dịch đang tồn tại)
+
+L0 : Giao dịch mới
+L1 : Hoàn thành
+L2 : Hủy
+
+Wallet_transsion - bảng được sử dụng trong trường hợp giao dịch cần được confirm
+- id (auto hoặc microseconds)
+- id_wallet
+- user_id
+- monney
+- contents
+- cdate
+- status (L0,L1) 
+
+1. Tạo một cái ví thông api
+2. Tạo giao dịch (tạo locked, tạo lịch sử, tao transaction)
+3. Confirm giao dịch (chuyển locked -> avarible tương đương khoản giao dịch, tạo lịch sử, xóa transaction)
+4. Hủy giao dịch (trừ locked, tạo lịch sử, xóa transaction)
+
+Nhóm người dụng wallet:
+1. cá nhân
+	- Xem thông tin chi tiết ví
+
+2. kế toán (quản lý tất cả các ví (danh sách ví, chi tiết ví {thông tin ví, thông về giao dịch, lịch sử}
+	- Nhập tiền (cho phép chọn + -)
+	- Confirm giao dịch, hủy giao dịch
+
+3. quản trị (admin)
+	- Nhập tiền (cho phép chọn + -)
+	- Confirm giao dịch, hủy giao dịch

@@ -10,61 +10,6 @@ $com=isset($_GET['com'])?strip_tags(trim($_GET['com'])):'frontpage';
 	</a></div>
 	<div class='header_content'>
 		<div class="navbar-container container-fluid">
-			<div class="nav-left">
-				<ul class="list-unstyle">
-					<li><span>Khóa</span></li>
-					<li>
-						<select class='form-control btn btn-fefault' id='cbo_year_menu'>
-							<option value="">Tất cả</option>
-							<?php
-							$res_khoa = SysGetList('tbl_khoa', array(), '');
-							if(count($res_khoa)>0){
-								$arr_year = array();
-								foreach ($res_khoa as $key => $value) {
-									$item = $value['id']; $selected = '';
-									if($_SESSION['THIS_YEAR']==$value['id']) $selected = 'selected';
-									echo '<option '.$selected.' value="'.$item.'">'.$value['name'].'</option>';
-								}
-							}
-							?>
-						</select>
-					</li>
-					<li><span>Bậc</span></li>
-					<li>
-						<select class="form-control btn btn-fefault" id="cbo_bac_menu">
-							<option value="">Tất cả</option>
-							<?php
-							$res_bac = SysGetList('tbl_he', array(), '');
-							if(count($res_bac) > 0){
-								foreach ($res_bac as $key => $value) {
-									$item = $value['id']; $selected = '';
-									if ($_SESSION['THIS_BAC']==$value['id']) $selected = 'selected';
-									echo '<option '.$selected.' value="'.$value['id'].'">'.$value['name'].'</option>';
-								}
-							}
-							?>
-						</select>
-					</li>
-					<li><span>Ngành</span></li>
-					<li>
-						<select class="form-control btn btn-fefault" id="cbo_nganh_menu">
-							<option value="">Tất cả</option>
-							<?php
-							$res_nganh = SysGetList('tbl_nganh', array(), '');
-							if(count($res_nganh) > 0){
-								foreach ($res_nganh as $key => $value) {
-									$item = $value['id'];
-									$selected = '';
-									if ($_SESSION['THIS_NGANH']==$value['id']) $selected = 'selected';
-									echo '<option '.$selected.' value="'.$value['id'].'">'.$value['name'].'</option>';
-								}
-							}
-							?>
-						</select>
-					</li>
-				</ul>
-			</div>
-
 			<div class="nav-right">
 				<ul class="list-unstyle">
 					<?php if($UserLogin->Permission('config')==true || $UserLogin->Permission('user')==true) { ?>
@@ -100,28 +45,7 @@ $com=isset($_GET['com'])?strip_tags(trim($_GET['com'])):'frontpage';
 		<div class='topmenu'>
 			<ul class="nav navbar-nav">
 				<?php
-				if($UserLogin->Permission('partner')==true || $UserLogin->Permission('city')==true || $UserLogin->Permission('edu_khoa')==true || $UserLogin->Permission('edu_he')==true || $UserLogin->Permission('edu_nganh')==true || $UserLogin->Permission('edu_monhoc')==true || $UserLogin->Permission('edu_hocphi')==true || $UserLogin->Permission('edu_hoso')==true ){ ?>
-					<li><a href='javascript:void(0);'><i class="fa fa-list" aria-hidden="true"></i> Danh mục</a>
-						<ul class="submenu">
-							<?php if($UserLogin->Permission('edu_khoa')==true) { ?>
-								<li><a href="<?php echo ROOTHOST;?>?com=edu&task=nienkhoa">Khóa đào tạo</a></li>
-							<?php } if($UserLogin->Permission('edu_he')==true) { ?>
-								<li><a href="<?php echo ROOTHOST;?>?com=edu&task=hedaotao">Bậc đào tạo</a></li>
-							<?php }?>
-							<li class="divide"><hr></li>
-							<?php if($UserLogin->Permission('city')==true) { ?>
-								<li><a href="<?php echo ROOTHOST;?>?com=city">Danh mục khu vực</a></li>
-							<?php } if($UserLogin->Permission('edu_nganh')==true) { ?>
-								<li><a href="<?php echo ROOTHOST;?>?com=edu&task=nganh">Danh mục ngành</a></li>
-							<?php } if($UserLogin->Permission('edu_monhoc')==true) { ?>
-								<li><a href="<?php echo ROOTHOST;?>?com=edu&task=monhoc">Danh mục môn học</a></li>
-							<?php } if($UserLogin->Permission('edu_hoso')==true) { ?>
-								<li><a href="<?php echo ROOTHOST;?>?com=edu&task=hoso">Danh mục hồ sơ</a></li>
-							<?php } ?>
-
-						</ul>
-					</li>
-				<?php } if($UserLogin->Permission('edu_khungdt')==true) { ?>
+				if($UserLogin->Permission('edu_khungdt')==true) { ?>
 					<li><a href='<?php echo ROOTHOST;?>?com=edu&task=khungdaotao'>
 						<i class="fa fa-file-text-o"></i> Khung đào tạo</a>
 					</li>
