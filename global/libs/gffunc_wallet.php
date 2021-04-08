@@ -275,8 +275,8 @@ function get_histories($user_id){
  Get transsion of wallet
  return array history
 */
-function get_transsion($id_wallet){
-	$sql="SELECT * FROM tbl_wallet_transsion WHERE id_wallet=".$id_wallet;
+function get_transsion($user_id){
+	$sql="SELECT * FROM tbl_wallet_transsion WHERE user_id='".$user_id."'";
 	$obj = new CLS_MYSQL();
 	$result = $obj->Query($sql);
 	if($obj->Num_rows()>0){
@@ -294,8 +294,8 @@ function get_transsion($id_wallet){
  Get transsion of wallet by user_id
  return array history
 */
-function get_transsion_by_user($user_id){
-	$sql="SELECT * FROM tbl_wallet_transsion WHERE user_id='".$user_id."'";
+function get_transsion_by_id($id_wallet){
+	$sql="SELECT * FROM tbl_wallet_transsion WHERE id_wallet=".$id_wallet;
 	$obj = new CLS_MYSQL();
 	$result = $obj->Query($sql);
 	if($obj->Num_rows()>0){

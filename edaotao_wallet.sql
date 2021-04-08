@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-04-08 18:22:38
+Date: 2021-04-09 00:40:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `tbl_logs`;
 CREATE TABLE `tbl_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(255) DEFAULT NULL,
-  `config` text DEFAULT NULL,
+  `config` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -68,7 +68,7 @@ CREATE TABLE `tbl_notify` (
   `notes` varchar(255) DEFAULT NULL,
   `cdate` int(11) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
-  `isactive` int(11) DEFAULT 0,
+  `isactive` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4265 DEFAULT CHARSET=utf8;
 
@@ -1313,7 +1313,7 @@ CREATE TABLE `tbl_user` (
   `lastlogin` datetime DEFAULT NULL,
   `gid` int(11) NOT NULL,
   `isroot` tinyint(4) DEFAULT NULL,
-  `isactive` int(11) NOT NULL DEFAULT 1,
+  `isactive` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -1327,7 +1327,7 @@ INSERT INTO `tbl_user` VALUES ('48', 'thaott_daotao', '00cd5ba0e25fd9ae5b8901974
 INSERT INTO `tbl_user` VALUES ('47', 'demodaotao', '453b885e6c7c3683041ab4bd8f717f46', 'Đào tạo', '', null, '', '', '012345678', '', '', null, null, null, null, '2020-02-27 11:11:55', null, '22', null, '1');
 INSERT INTO `tbl_user` VALUES ('45', 'hatn', '2220dc2d04ab4611f78cb4615dc0aa25', 'Trương Ngọc Hà', '', null, '', '', '0917796898', '', '', '', '', '', '', '2019-11-04 16:41:26', null, '9', '0', '1');
 INSERT INTO `tbl_user` VALUES ('50', 'hungtv_daotao', '9b40eccc3434b426c10abb927e80c098', 'Trần Văn Hưng', '', null, '', '', '0972848718', '', '', null, null, null, null, '2020-04-08 15:50:43', null, '22', null, '1');
-INSERT INTO `tbl_user` VALUES ('51', 'tranhiep', 'b8a1099b57fb53d28fba7d5717e317ea', 'Trần Viết Hiệp', '', null, '', '', '0969549903', '', 'tranviethiepdz@gmail.com', null, null, null, null, '2020-04-08 15:50:43', '2021-04-08 06:17:59', '9', null, '1');
+INSERT INTO `tbl_user` VALUES ('51', 'tranhiep', 'b8a1099b57fb53d28fba7d5717e317ea', 'Trần Viết Hiệp', '', null, '', '', '0969549903', '', 'tranviethiepdz@gmail.com', null, null, null, null, '2020-04-08 15:50:43', '2021-04-09 12:39:55', '9', null, '1');
 INSERT INTO `tbl_user` VALUES ('53', 'test', 'b8a1099b57fb53d28fba7d5717e317ea', 'test', '', null, '', '', '09695499991', '', '', null, null, null, null, '2021-03-22 10:49:14', '2021-03-22 10:50:12', '33', null, '1');
 
 -- ----------------------------
@@ -1336,17 +1336,17 @@ INSERT INTO `tbl_user` VALUES ('53', 'test', 'b8a1099b57fb53d28fba7d5717e317ea',
 DROP TABLE IF EXISTS `tbl_user_group`;
 CREATE TABLE `tbl_user_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) DEFAULT 0,
+  `par_id` int(11) DEFAULT '0',
   `path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `permission` int(11) NOT NULL DEFAULT 0,
-  `config` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `intro` text COLLATE utf8_unicode_ci,
+  `permission` int(11) NOT NULL DEFAULT '0',
+  `config` text COLLATE utf8_unicode_ci,
   `isroot` tinyint(4) DEFAULT NULL,
-  `isadmin` int(11) NOT NULL DEFAULT 0,
-  `issale` tinyint(4) DEFAULT 0,
-  `isstore` tinyint(4) DEFAULT 0,
-  `isactive` int(11) DEFAULT 1,
+  `isadmin` int(11) NOT NULL DEFAULT '0',
+  `issale` tinyint(4) DEFAULT '0',
+  `isstore` tinyint(4) DEFAULT '0',
+  `isactive` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1367,11 +1367,11 @@ DROP TABLE IF EXISTS `tbl_wallet`;
 CREATE TABLE `tbl_wallet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(50) DEFAULT '',
-  `free` float DEFAULT 0,
-  `locked` float DEFAULT 0,
-  `cdate` int(11) DEFAULT 0,
-  `mdate` int(11) DEFAULT 0,
-  `isactive` tinyint(1) DEFAULT 0,
+  `free` float DEFAULT '0',
+  `locked` float DEFAULT '0',
+  `cdate` int(11) DEFAULT '0',
+  `mdate` int(11) DEFAULT '0',
+  `isactive` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
@@ -1386,18 +1386,19 @@ INSERT INTO `tbl_wallet` VALUES ('1', '123456ABC', '8000000', '200000', '1617880
 DROP TABLE IF EXISTS `tbl_wallet_histories`;
 CREATE TABLE `tbl_wallet_histories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_wallet` int(11) NOT NULL DEFAULT 0,
-  `user_id` varchar(0) NOT NULL,
-  `money` float DEFAULT 0,
+  `id_wallet` int(11) NOT NULL DEFAULT '0',
+  `user_id` varchar(50) NOT NULL,
+  `money` float DEFAULT '0',
   `contents` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
   `cdate` int(11) NOT NULL,
-  `status` tinyint(2) DEFAULT 0,
+  `status` varchar(2) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tbl_wallet_histories
 -- ----------------------------
+INSERT INTO `tbl_wallet_histories` VALUES ('1', '1', '123456ABC', '200000', 'Test', '1617880151', 'L0');
 
 -- ----------------------------
 -- Table structure for tbl_wallet_transsion
@@ -1405,18 +1406,19 @@ CREATE TABLE `tbl_wallet_histories` (
 DROP TABLE IF EXISTS `tbl_wallet_transsion`;
 CREATE TABLE `tbl_wallet_transsion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_wallet` int(11) NOT NULL DEFAULT 0,
-  `user_id` varchar(0) NOT NULL,
-  `money` float DEFAULT 0,
+  `id_wallet` int(11) NOT NULL DEFAULT '0',
+  `user_id` varchar(50) NOT NULL,
+  `money` float DEFAULT '0',
   `contents` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
   `cdate` int(11) NOT NULL,
-  `status` tinyint(2) DEFAULT 0,
+  `status` varchar(2) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tbl_wallet_transsion
 -- ----------------------------
+INSERT INTO `tbl_wallet_transsion` VALUES ('1', '1', '123456ABC', '200000', 'Test', '1617880151', 'L0');
 
 -- ----------------------------
 -- Table structure for tbl_working_log
