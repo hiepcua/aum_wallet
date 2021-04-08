@@ -241,7 +241,7 @@ li:hover > ul {
 }
 
 #site_main{	margin-left:260px;}
-#main_inner { padding-top: 95px; padding-left: 10px; padding-right: 10px;}
+#main_inner { padding-top: 45px; padding-left: 10px; padding-right: 10px;}
 .order_tab {display: flex;width: 100%;position: relative;padding: 10px;}
 .order_tab a {margin: 0px 2px; padding: 5px; font-size: 13px; flex: auto;}
 .num {background: red;color: white;padding: 2px 5px;border-radius: 3px;}
@@ -615,7 +615,6 @@ clear: both;
     font-size: 16px;
     font-weight: bold;
     line-height: 42px;
-    background: #ddd;
     padding: 0px 10px;
 }
 .user_group_list {
@@ -684,9 +683,6 @@ clear: both;
 .dashboard_page .box .icon-category .fa {width:68px; height:68px;text-align:center;transform:translate(0,15%)}
 .dashboard_page {
     padding: 20px 0; overflow:hidden;
-}
-.dashboard_page .panel-warning {
-    height: 150px;
 }
 .dashboard_page .panel-body .media {overflow:hidden; padidng-bottom:10px;}
 .dashboard_page .media-heading {

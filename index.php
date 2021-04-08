@@ -4,7 +4,7 @@ ini_set("display_errors",1);
 require_once('global/libs/gfconfig.php');
 require_once('global/libs/gfinit.php');
 require_once('global/libs/gffunc.php');
-require_once('global/libs/gffunc_edu.php');
+require_once('global/libs/gffunc_wallet.php');
 require_once('includes/gfconfig.php');
 require_once('libs/cls.mysql.php');
 require_once('libs/cls.users.php');
