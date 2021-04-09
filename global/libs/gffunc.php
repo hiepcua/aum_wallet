@@ -429,7 +429,7 @@ function SysGetList($table,$fields=array(),$where='',$flag=true){
         }
         $sql=substr($sql,0,-1)." FROM $table WHERE 1=1 $where ";
     }
-    // echo $sql;
+    echo $sql;
     $obj=new CLS_MYSQL;
     $obj->Query($sql);
     if($flag){

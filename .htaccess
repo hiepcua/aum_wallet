@@ -16,9 +16,12 @@ RewriteRule ^account/view?$ 					index.php?com=account&task=view [QSA]
 # config
 RewriteRule ^config/?$ 							index.php?com=config  [QSA]
 
+# wallet API
+RewriteRule ^create_wallet/?$ 					api/create_wallet.php
+
 # wallet
 RewriteRule ^wallet/?$ 							index.php?com=wallet [QSA]
-RewriteRule ^wallet_detail/([0-9A-Za-z]+)?$ 	index.php?com=wallet&task=detail&cusid=$1 [QSA]
+RewriteRule ^wallet_detail/([0-9A-Za-z]+)?$ 	index.php?com=wallet&task=detail&userid=$1 [QSA]
 
 # report
 RewriteRule ^report/?$ 							index.php?com=report [QSA]
